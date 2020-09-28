@@ -16,7 +16,7 @@ from find_pupil import pupillometry
 #text
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 SMI_DIM = (720, 480) # Dimension from SMI System
-DEFAULT_FILE_NAME = 'V1219_20850228_234726_Dilation2.mp4'
+DEFAULT_FILE_NAME = 'clearvideo.mp4'
 
 
 def plot_radial_perimeter(left_rads, left_radius, right_rads, right_radius):
@@ -64,6 +64,7 @@ def display_left(left):
     L_STRING = "Left"
     cv2.putText(resized_left, L_STRING, (0, 20), FONT, 0.8, (0, 255, 0), 2, cv2.LINE_AA)
     cv2.imshow('Left Eye', resized_left)
+    cv2.waitKey(0)
     # resized_frame = ResizeWithAspectRatio(frame, height = 480)
 
 
@@ -74,6 +75,7 @@ def display_right(right):
     R_STRING = "Right"
     cv2.putText(resized_right, R_STRING, (0, 20), FONT, 0.8, (0, 255, 0), 2, cv2.LINE_AA)
     cv2.imshow('Right Eye', resized_right)
+    cv2.waitKey(0)
     # resized_frame = ResizeWithAspectRatio(frame, height = 480)
 
 def display_main(frame, cap):
@@ -91,6 +93,7 @@ def display_main(frame, cap):
 
     # Display the resulting frame
     cv2.imshow('Frame', resized_frame)
+    cv2.waitKey(0)
 
 # pylint: disable=W0613
 def get_time(frame, timestamp):
