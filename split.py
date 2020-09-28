@@ -100,7 +100,7 @@ def get_time(frame, timestamp):
     """Get time from Night Owel security syste use OCT
     Input: frame
     Output: time"""
-    print("time")
+    print(frame)
 
 def main(frame=-1, filename=DEFAULT_FILE_NAME):
     """#input frame: -1, the whole file, else a particular frame"""
@@ -133,8 +133,10 @@ def main(frame=-1, filename=DEFAULT_FILE_NAME):
     while cap.isOpened():
       # Capture frame-by-frame
 
+
         if int(framenum) != -1:
             cap.set(cv2.CAP_PROP_POS_FRAMES, int(framenum)-1)
+       
 
         ret, frame = cap.read()
 
