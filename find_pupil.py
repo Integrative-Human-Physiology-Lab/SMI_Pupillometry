@@ -143,7 +143,7 @@ def pupillometry(input_, debug=2, method=1):
         #     os.remove("data.csv")
         # except:
         #     return "something went wrong"
-        csvdata = open(base_name+'.csv', "w")
+        csvdata = open('outputcsv'+'.csv', "w")
         csvdata.write('timestamp (ms),data (radius,radians)\n')
         contour_found = False
         #keep trying with different thresholds, until you find something
@@ -359,6 +359,12 @@ def pupillometry(input_, debug=2, method=1):
         #Pupillary & Limbic Bd. Localizatoin
         #Eyelid Localization
         #Eyelash and Shadow Detection
+            csvdata.write(str(time)+',')
+            np.savetxt(csvdata, radius, '%s', delimiter=',', newline=',')
+            csvdata.write('\n')
+            csvdata.write(str(time))
+            np.savetxt(csvdata, rads, '%s', delimiter=',', newline=',')
+            csvdata.write('\n')
         return img_main, rads, radius
 if __name__ == "__main__":
     print(len(sys.argv))

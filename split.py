@@ -10,9 +10,11 @@ and assigns a timestamp based on the night owel clock.
 """
 
 import sys
+import math
 import cv2
 import matplotlib.pyplot as plt
 from find_pupil import pupillometry
+import numpy
 #text
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 SMI_DIM = (720, 480) # Dimension from SMI System
@@ -40,6 +42,8 @@ def plot_radial_perimeter(left_rads, left_radius, right_rads, right_radius):
     plt.xlabel('angle (radians)')
     plt.show()
     plt.pause(0.05)
+    best_fit(left_rads, left_radius, right_rads, right_radius)
+    
 
 def resize_with_aspect_ratio(image, width=None, height=None, inter=cv2.INTER_AREA):
     """Resizes image to particular width or height but keeps aspect ratio"""
@@ -101,6 +105,21 @@ def get_time(frame, timestamp):
     Input: frame
     Output: time"""
     print(frame)
+
+def best_fit(left_rads, left_radius, right_rads, right_radius):
+    left_fit = numpy.polyfit(left_rads, left_radius, 4)
+    right_fit = numpy.polyfit(right_rads, right_radius, 4)
+    print('left fit: ', left_fit)
+    print('right fit: ', right_fit)
+    differences=[]
+    temp=0
+    for (x in range(0, len(left_radius))
+        polyval=(left_fit[0]*left_rads[x]**4)+(left_fit[1]*left_rads[x]**3)+(left_fit[2]*left_rads[x]**2)+(left_fit[3]*left_rads[x])+(left_fit[4])
+        differences.append(x-polyval)
+    for(x in differences)
+        temp+=x**2
+        temp=math.sqrt(temp)
+    print('left variance: ', temp)
 
 def main(frame=-1, filename=DEFAULT_FILE_NAME):
     """#input frame: -1, the whole file, else a particular frame"""
