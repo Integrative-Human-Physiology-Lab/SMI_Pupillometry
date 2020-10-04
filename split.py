@@ -114,7 +114,7 @@ def best_fit(left_rads, left_radius, right_rads, right_radius):
     differences=[]
     temp=0
     for (x in range(0, len(left_radius))
-        polyval=(left_fit[0]*left_rads[x]**4)+(left_fit[1]*left_rads[x]**3)+(left_fit[2]*left_rads[x]**2)+(left_fit[3]*left_rads[x])+(left_fit[4])
+        polyval=(left_fit[0]*numpy.power(left_rads[x], 4))+(left_fit[1]*numpy.power(left_rads[x], 3))+(left_fit[2]*left_rads[x]**2)+(left_fit[3]*left_rads[x])+(left_fit[4])
         differences.append(x-polyval)
     for(x in differences)
         temp+=x**2
