@@ -43,7 +43,7 @@ def plot_radial_perimeter(left_rads, left_radius, right_rads, right_radius):
     plt.show()
     plt.pause(0.05)
     best_fit(left_rads, left_radius, right_rads, right_radius)
-    
+
 
 def resize_with_aspect_ratio(image, width=None, height=None, inter=cv2.INTER_AREA):
     """Resizes image to particular width or height but keeps aspect ratio"""
@@ -111,12 +111,12 @@ def best_fit(left_rads, left_radius, right_rads, right_radius):
     right_fit = numpy.polyfit(right_rads, right_radius, 4)
     print('left fit: ', left_fit)
     print('right fit: ', right_fit)
-    differences=[]
-    temp=0
-    for (x in range(0, len(left_radius))
-        polyval=(left_fit[0]*numpy.power(left_rads[x], 4))+(left_fit[1]*numpy.power(left_rads[x], 3))+(left_fit[2]*left_rads[x]**2)+(left_fit[3]*left_rads[x])+(left_fit[4])
+    differences = []
+    temp = 0
+    for x in range(0, len(left_radius)):
+        polyval = (left_fit[0]*numpy.power(left_rads[x], 4)) + (left_fit[1]*numpy.power(left_rads[x], 3))+(left_fit[2]*left_rads[x]**2)+(left_fit[3]*left_rads[x])+(left_fit[4])
         differences.append(x-polyval)
-    for(x in differences)
+    for x in differences:
         temp+=x**2
         temp=math.sqrt(temp)
     print('left variance: ', temp)
@@ -155,7 +155,7 @@ def main(frame=-1, filename=DEFAULT_FILE_NAME):
 
         if int(framenum) != -1:
             cap.set(cv2.CAP_PROP_POS_FRAMES, int(framenum)-1)
-       
+
 
         ret, frame = cap.read()
 
